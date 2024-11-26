@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Stopwatch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Countdown Stopwatch</h1>
+    <div id="timer">
+      <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+    </div>
+    <div class="controls">
+      <input type="number" id="set-hours" placeholder="Hours" min="0" max="99">
+      <input type="number" id="set-minutes" placeholder="Minutes" min="0" max="59">
+      <input type="number" id="set-seconds" placeholder="Seconds" min="0" max="59">
+      <button id="set-btn">Set</button>
+    </div>
+    <div class="actions">
+      <button id="start-btn">Start</button>
+      <button id="pause-btn">Pause</button>
+      <button id="clear-btn">Clear</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <button id="stop-btn">Stop</button>
+  <audio id="alarm-sound" src="./sounds/alarm.mp3" preload="auto"></audio>
+
+</body>
+</html>
