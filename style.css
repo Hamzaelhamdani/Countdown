@@ -50,6 +50,20 @@ body {
   button:hover {
     background: #ff8000;
   }
+.stop-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.start-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
   
   button:disabled {
     background: #ccc;
