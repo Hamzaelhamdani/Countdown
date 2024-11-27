@@ -10,6 +10,16 @@ const setMinutes = document.getElementById('set-minutes');
 const setSeconds = document.getElementById('set-seconds');
 const alarmSound = document.getElementById('alarm-sound');
 
+// Function to play the alarm
+function playAlarm() {
+    try {
+        alarmSound.currentTime = 0; // Reset to start
+        alarmSound.play();
+    } catch (error) {
+        console.error('Error playing the alarm sound:', error);
+    }
+}
+
 // Set Timer
 document.getElementById('set-btn').addEventListener('click', () => {
     const hours = parseInt(setHours.value) || 0;
@@ -31,7 +41,7 @@ document.getElementById('start-btn').addEventListener('click', () => {
             if (totalTime <= 0) {
                 clearInterval(timerInterval);
                 timerInterval = null;
-                alarmSound.play();
+                playAlarm(); // Play alarm when timer reaches zero
             }
         }, 1000);
     }
