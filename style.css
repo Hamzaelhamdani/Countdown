@@ -83,6 +83,9 @@ body {
     padding: 10px 20px;
     cursor: pointer;
 }
+.stop-btn:hover {
+    background: #e82210;
+  }
 .start-btn {
     background-color: green;
     color: white;
@@ -90,7 +93,10 @@ body {
     padding: 10px 20px;
     cursor: pointer;
 }
-  
+
+.start-btn:hover {
+    background: #07b527;
+  }
   button:disabled {
     background: #ccc;
     cursor: not-allowed;
