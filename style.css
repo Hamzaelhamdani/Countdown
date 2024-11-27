@@ -36,7 +36,33 @@ body {
     border-radius: 5px;
   }
   
-  button {
+  .set-btn {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 1em;
+    background: #ff8000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+.set-btn:hover {
+    background: #ff8000;
+  }
+  .clear-btn {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 1em;
+    background: #ff8000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .clear-btn:hover {
+    background: #ff8000;
+  }
+  .pause-btn {
     padding: 10px 15px;
     margin: 5px;
     font-size: 1em;
@@ -47,7 +73,7 @@ body {
     cursor: pointer;
   }
   
-  button:hover {
+   .pause-btn:hover {
     background: #ff8000;
   }
 .stop-btn {
