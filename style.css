@@ -1,93 +1,56 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: #f7f7f7;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    margin: 50px auto;
-    max-width: 400px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    color: #ff8000;
-}
-
-#timer {
-    font-size: 2.5em;
-    margin: 20px 0;
-    font-weight: bold;
-    color: #333;
-}
-
-.controls input {
-    width: 60px;
-    padding: 8px;
-    font-size: 1em;
-    margin: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
+/* Style commun pour tous les boutons */
 button {
-    padding: 10px 15px;
+    padding: 10px 20px;
     margin: 5px;
     font-size: 1em;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
+/* Style spécifique pour chaque bouton */
 #set-btn {
-    background: #ff8000;
+    background-color: #ff8000;
     color: white;
 }
 
 #set-btn:hover {
-    background: #e07b00;
+    background-color: #e07b00;
 }
 
 #start-btn {
-    background: green;
+    background-color: green;
     color: white;
 }
 
 #start-btn:hover {
-    background: #07b527;
+    background-color: #07b527;
 }
 
 #pause-btn {
-    background: orange;
+    background-color: orange;
     color: white;
 }
 
 #pause-btn:hover {
-    background: #e68900;
-}
-
-#stop-btn {
-    background: red;
-    color: white;
-}
-
-#stop-btn:hover {
-    background: #e82210;
+    background-color: #e68900;
 }
 
 #clear-btn {
-    background: gray;
+    background-color: gray;
     color: white;
 }
 
 #clear-btn:hover {
-    background: #555;
+    background-color: #555;
+}
+
+#stop-btn {
+    background-color: red;
+    color: white;
+}
+
+#stop-btn:hover {
+    background-color: #e82210;
 }
