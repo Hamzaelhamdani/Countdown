@@ -1,121 +1,115 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const alarmSound = document.getElementById("alarm-sound");
+  const page1 = document.getElementById("page1");
+  const page2 = document.getElementById("page2");
 
-  let timer = {
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
+  // Timer settings
+  const setHoursEl = document.getElementById("set-hours");
+  const setMinutesEl = document.getElementById("set-minutes");
+  const setSecondsEl = document.getElementById("set-seconds");
+  const timerDisplay = {
+    hours: document.getElementById("hours"),
+    minutes: document.getElementById("minutes"),
+    seconds: document.getElementById("seconds"),
   };
+  const buttons = document.querySelectorAll(".btn-add, .btn-subtract");
+  const setBtn = document.getElementById("set-btn");
+  const resetBtn = document.getElementById("reset-btn");
 
+  // Stopwatch controls
+  const playPauseBtn = document.getElementById("play-pause-btn");
+  const stopBtn = document.getElementById("stop-btn");
+  const alarm = document.getElementById("alarm-sound");
+
+  // Timer data
+  let timer = { hours: 0, minutes: 0, seconds: 0 };
+  let initialTimer = { hours: 0, minutes: 0, seconds: 0 }; // Pour stocker le timer initial
   let countdownInterval;
-  let isPaused = false;
+  let isRunning = false; // Pour vérifier si le chronomètre est en cours d'exécution
 
-  // DOM Elements
-  const hoursEl = document.getElementById('hours');
-  const minutesEl = document.getElementById('minutes');
-  const secondsEl = document.getElementById('seconds');
-  const setHours = document.getElementById('set-hours');
-  const setMinutes = document.getElementById('set-minutes');
-  const setSeconds = document.getElementById('set-seconds');
-  const setBtn = document.getElementById('set-btn');
-  const startBtn = document.getElementById('start-btn');
-  const pauseBtn = document.getElementById('pause-btn');
-  const clearBtn = document.getElementById('clear-btn');
-  const stopBtn = document.getElementById('stop-btn');
-  const playBtn = document.getElementById('play-btn'); // Ajoutez ce bouton dans votre HTML.
-
-  pauseBtn.hidden = true;
-  playBtn.hidden = true;
-
-  // Update the display
   function updateDisplay() {
-    hoursEl.textContent = String(timer.hours).padStart(2, '0');
-    minutesEl.textContent = String(timer.minutes).padStart(2, '0');
-    secondsEl.textContent = String(timer.seconds).padStart(2, '0');
+    timerDisplay.hours.textContent = String(timer.hours).padStart(2, "0");
+    timerDisplay.minutes.textContent = String(timer.minutes).padStart(2, "0");
+    timerDisplay.seconds.textContent = String(timer.seconds).padStart(2, "0");
   }
 
-  // Start Countdown
-  function startCountdown() {
-    countdownInterval = setInterval(() => {
-      if (timer.seconds > 0) {
-        timer.seconds--;
-      } else if (timer.minutes > 0) {
-        timer.minutes--;
-        timer.seconds = 59;
-      } else if (timer.hours > 0) {
-        timer.hours--;
-        timer.minutes = 59;
-        timer.seconds = 59;
-      } else {
-        clearInterval(countdownInterval);
-        countdownInterval = null;
-        alarmSound.play().catch(error => console.error("Erreur lors de la lecture du son :", error));
-        alert("Time's up!");
-      }
-      updateDisplay();
-    }, 1000);
+  function updateSettingsDisplay() {
+    setHoursEl.textContent = String(timer.hours).padStart(2, "0");
+    setMinutesEl.textContent = String(timer.minutes).padStart(2, "0");
+    setSecondsEl.textContent = String(timer.seconds).padStart(2, "0");
   }
 
-  // Set Timer
-  setBtn.addEventListener('click', () => {
-    timer.hours = parseInt(setHours.value) || 0;
-    timer.minutes = parseInt(setMinutes.value) || 0;
-    timer.seconds = parseInt(setSeconds.value) || 0;
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.target;
+      const increment = btn.classList.contains("btn-add") ? 1 : -1;
+
+      if (target === "hours") timer.hours = Math.max(0, timer.hours + increment);
+      if (target === "minutes") timer.minutes = Math.min(Math.max(0, timer.minutes + increment), 59);
+      if (target === "seconds") timer.seconds = Math.min(Math.max(0, timer.seconds + increment), 59);
+
+      updateSettingsDisplay();
+    });
+  });
+
+  setBtn.addEventListener("click", () => {
+    // Enregistrer le timing initial
+    initialTimer = { ...timer };
     updateDisplay();
+    page1.classList.remove("active");
+    page2.classList.add("active");
   });
 
-  // Start Button
-  startBtn.addEventListener('click', () => {
-    if (!countdownInterval) {
-      startCountdown();
-      startBtn.hidden = true;
-      pauseBtn.hidden = false;
-    }
+  resetBtn.addEventListener("click", () => {
+    clearInterval(countdownInterval);
+    timer = { ...initialTimer }; // Réinitialiser le timer à l'état initial
+    updateSettingsDisplay();
+    page2.classList.remove("active");
+    page1.classList.add("active");
+    alarm.pause(); // Arrêter le son si l'utilisateur réinitialise
+    alarm.currentTime = 0; // Remettre le son au début
+    playPauseBtn.textContent = "Play"; // Revenir à Play après réinitialisation
+    playPauseBtn.classList.remove("paused"); // Retirer l'état "paused"
+    isRunning = false; // L'état du chronomètre est maintenant arrêté
   });
 
-  // Pause Button
-  pauseBtn.addEventListener('click', () => {
-    if (countdownInterval) {
+  playPauseBtn.addEventListener("click", () => {
+    if (isRunning) {
+      // Si le chronomètre est en cours d'exécution, il faut le mettre en pause
       clearInterval(countdownInterval);
-      countdownInterval = null;
-      isPaused = true;
-      pauseBtn.hidden = true;
-      playBtn.hidden = false;
+      playPauseBtn.textContent = "Play"; // Changer le texte en Play
+      playPauseBtn.classList.remove("paused"); // Retirer l'état "paused"
+    } else {
+      // Si le chronomètre est en pause, démarrer le compte à rebours
+      countdownInterval = setInterval(() => {
+        if (timer.seconds > 0) {
+          timer.seconds--;
+        } else if (timer.minutes > 0) {
+          timer.minutes--;
+          timer.seconds = 59;
+        } else if (timer.hours > 0) {
+          timer.hours--;
+          timer.minutes = 59;
+          timer.seconds = 59;
+        } else {
+          clearInterval(countdownInterval);
+          alarm.play(); // Joue le son d'alarme lorsque le timer atteint zéro
+        }
+        updateDisplay();
+      }, 1000);
+      playPauseBtn.textContent = "Pause"; // Changer le texte en Pause
+      playPauseBtn.classList.add("paused"); // Ajouter l'état "paused"
     }
+    isRunning = !isRunning; // Inverser l'état d'exécution du chronomètre
   });
 
-  // Play Button
-  playBtn.addEventListener('click', () => {
-    if (isPaused) {
-      isPaused = false;
-      playBtn.hidden = true;
-      pauseBtn.hidden = false;
-      startCountdown();
-    }
-  });
-
-  // Clear Button
-  clearBtn.addEventListener('click', () => {
+  stopBtn.addEventListener("click", () => {
     clearInterval(countdownInterval);
-    countdownInterval = null;
-    timer.hours = 0;
-    timer.minutes = 0;
-    timer.seconds = 0;
-    isPaused = false;
-    startBtn.hidden = false;
-    pauseBtn.hidden = true;
-    playBtn.hidden = true;
+    timer = { ...initialTimer }; // Réinitialiser le timer à l'état initial
     updateDisplay();
-  });
-
-  // Stop Button
-  stopBtn.addEventListener('click', () => {
-    if (!alarmSound.paused) {
-      alarmSound.pause();
-      alarmSound.currentTime = 0;
-    }
-    clearInterval(countdownInterval);
-    countdownInterval = null;
-    isPaused = false;
+    alarm.pause(); // Arrêter le son si l'utilisateur appuie sur stop
+    alarm.currentTime = 0; // Remettre le son au début
+    playPauseBtn.textContent = "Play"; // Revenir à Play après stop
+    playPauseBtn.classList.remove("paused"); // Retirer l'état "paused"
+    isRunning = false; // L'état du chronomètre est maintenant arrêté
   });
 });

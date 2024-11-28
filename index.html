@@ -3,31 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ODC Countdown</title>
+  <title>ODC COUNTDOWN</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
+  <!-- Set Timer -->
+  <div id="page1" class="container active">
+    <h1>ODC COUNTDOWN</h1>
+    <div id="timing-controls">
+      <div>
+        <button class="btn-add" data-target="hours">+</button>
+        <span id="set-hours">00</span>
+        <button class="btn-subtract" data-target="hours">-</button>
+        <span>Hours</span>
+      </div>
+      <div>
+        <button class="btn-add" data-target="minutes">+</button>
+        <span id="set-minutes">00</span>
+        <button class="btn-subtract" data-target="minutes">-</button>
+        <span> Minutes</span>
+      </div>
+      <div>
+        <button class="btn-add" data-target="seconds">+</button>
+        <span id="set-seconds">00</span>
+        <button class="btn-subtract" data-target="seconds">-</button>
+        <span>  Seconds</span>
+      </div>
+    </div>
+    <button id="set-btn" class="btn-set">Set</button>
+  </div>
+
+  <!-- ODC Controls -->
+  <div id="page2" class="container">
     <h1>ODC COUNTDOWN</h1>
     <div id="timer">
       <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
     </div>
-    <div class="controls">
-      <input type="number" id="set-hours" placeholder="Hours" min="0" max="99">
-      <input type="number" id="set-minutes" placeholder="Minutes" min="0" max="59">
-      <input type="number" id="set-seconds" placeholder="Seconds" min="0" max="59">
-      <button id="set-btn" class="btn-set">Set</button>
-    </div>
     <div class="actions">
-      <button class="btn-start" id="start-btn">Start</button>
-      <button class="btn-pause" id="pause-btn">Pause</button>
-      <button class="btn-play" id="play-btn">Play</button>
-      <button class="btn-clear" id="clear-btn">Clear</button>
-      <button class="btn-stop" id="stop-btn">Stop</button>
+      <button id="play-pause-btn" class="btn btn-play">Play</button>
+      <button id="stop-btn" class="btn-stop">Stop</button>
+      <button id="reset-btn" class="btn-reset">Reset Timing</button>
+    
+
     </div>
   </div>
-  <script src="script.js"></script>
   <audio id="alarm-sound" src="./sounds/alarm.mp3" preload="auto"></audio>
-
+  <script src="script.js"></script>
 </body>
 </html>
