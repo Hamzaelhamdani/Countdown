@@ -1,4 +1,4 @@
-body {
+/*body {
     font-family: Arial, sans-serif;
     text-align: center;
     background: #f0f0f0;
@@ -55,4 +55,152 @@ body {
     background: #ccc;
     cursor: not-allowed;
   }
-  
+.btn-set {
+  background: #007bff;
+  color: white;
+}
+
+.btn-set:hover {
+  background: #0056b3;
+}
+
+.btn-start {
+  background: #28a745;
+  color: white;
+}
+
+.btn-start:hover {
+  background: #1e7e34;
+}
+
+.btn-pause,
+.btn-clear {
+  background: #fd7e14;
+  color: white;
+}
+
+.btn-pause:hover,
+.btn-clear:hover {
+  background: #e8590c;
+}
+
+.btn-stop {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-stop:hover {
+  background: #a71d2a;
+}
+.btn-play {
+  background: #20c997;
+  color: white;
+}
+
+.btn-play:hover {
+  background: #17a58b;
+}
+*/
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: 50px auto;
+  max-width: 400px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#timer {
+  font-size: 2.5em;
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+.controls, .actions {
+  margin: 10px 0;
+}
+
+input {
+  width: 60px;
+  padding: 8px;
+  font-size: 1em;
+  margin: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #e9640b;
+  cursor: not-allowed;
+}
+
+/* Bouton Set - Bleu */
+.btn-set {
+  background: #007bff; /* Bleu */
+  color: white;
+}
+
+.btn-set:hover {
+  background: #0056b3;
+}
+
+/* Bouton Start - Vert */
+.btn-start {
+  background: #28a745; /* Vert */
+  color: white;
+}
+
+.btn-start:hover {
+  background: #1e7e34;
+}
+
+/* Boutons Pause et Clear - Orange */
+.btn-pause,
+.btn-clear {
+  background: #fd7e14; /* Orange */
+  color: white;
+}
+
+.btn-pause:hover,
+.btn-clear:hover {
+  background: #e8590c;
+}
+
+/* Bouton Stop - Rouge */
+.btn-stop {
+  background: #dc3545; /* Rouge */
+  color: white;
+}
+
+.btn-stop:hover {
+  background: #a71d2a;
+}
+
+/* Bouton Play - Vert foncé (différent de Start pour différenciation) */
+.btn-play {
+  background: #20c997; /* Vert foncé */
+  color: white;
+}
+
+.btn-play:hover {
+  background: #17a58b;
+}
