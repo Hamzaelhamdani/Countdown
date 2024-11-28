@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>Orange Digital Center Countdown</h1>
+    <h1>ODC COUNTDOWN</h1>
     <div id="timer">
       <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
     </div>
@@ -16,13 +16,14 @@
       <input type="number" id="set-hours" placeholder="Hours" min="0" max="99">
       <input type="number" id="set-minutes" placeholder="Minutes" min="0" max="59">
       <input type="number" id="set-seconds" placeholder="Seconds" min="0" max="59">
-      <button id="set-btn">Set</button>
+      <button id="set-btn" class="btn-set">Set</button>
     </div>
     <div class="actions">
-      <button id="start-btn">Start</button>
-      <button id="pause-btn">Pause</button>
-      <button id="clear-btn">Clear</button>
-      <button id="stop-btn">Stop</button>
+      <button class="btn-start" id="start-btn">Start</button>
+      <button class="btn-pause" id="pause-btn">Pause</button>
+      <button class="btn-play" id="play-btn">Play</button>
+      <button class="btn-clear" id="clear-btn">Clear</button>
+      <button class="btn-stop" id="stop-btn">Stop</button>
     </div>
   </div>
   <script src="script.js"></script>
